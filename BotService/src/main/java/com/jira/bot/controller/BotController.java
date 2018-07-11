@@ -14,11 +14,11 @@ import com.jira.bot.model.BotResponse;
 
 @RestController
 @RequestMapping(value = "/bot")
-@PropertySource(ignoreResourceNotFound = true, value = "classpath:url.properties")
+@PropertySource(ignoreResourceNotFound = true, value = "classpath:staticdata.properties")
 public class BotController {
 	
-	@Value("${jira.url}")
-    private String jira_url;
+	@Value("${app.url}")
+    private String app_url;
 
 	@GetMapping("/")
 	public String checkEndpoint() {
@@ -44,7 +44,7 @@ public class BotController {
 			return botResp;
 		}
 		botResp.setResponseId(UUID.randomUUID());
-		botResp.setResponseText("Here is the Jira Url: \n\t" + jira_url);
+		botResp.setResponseText("Here is the Jira Url: \n\t" + app_url);
 		return botResp;
 	}
 	
